@@ -1,0 +1,34 @@
+version: "3.7"
+services:
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:6.8.6
+    container_name: logstash
+    volumes:
+      - ./conf/cloudfront.conf:/usr/share/logstash/config/cloudfront.conf
+      - ./conf/cloudfront.template.json:/usr/share/logstash/config/cloudfront.template.json
+      - ./logs:/logs
+    command: "logstash -f /usr/share/logstash/config/cloudfront.conf"
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.8.6
+    container_name: elasticsearch
+    environment:
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    volumes:
+      - ./data:/usr/share/elasticsearch/data
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - 9200:9200
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:6.8.6
+    container_name: kibana
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    ports:
+      - 5601:5601

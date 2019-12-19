@@ -1,0 +1,44 @@
+{
+  "template": "cloudfront-logs-*",
+  "mappings": {
+    "logs": {
+      "_source": {
+        "enabled": false
+      },
+      "_all": {
+        "enabled": false
+      },
+      "dynamic_templates": [
+        {
+          "string_fields": {
+            "mapping": {
+              "index": "not_analyzed",
+              "type": "string"
+            },
+            "match_mapping_type": "string",
+            "match": "*"
+          }
+        }
+      ],
+      "properties": {
+        "geoip": {
+          "dynamic": true,
+          "properties": {
+            "ip": {
+              "type": "ip"
+            },
+            "location": {
+              "type": "geo_point"
+            },
+            "latitude": {
+              "type": "float"
+            },
+            "longitude": {
+              "type": "float"
+            }
+          }
+        }
+      }
+    }
+  }
+}
