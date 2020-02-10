@@ -21,21 +21,13 @@
         }
       ],
       "properties": {
-        "geoip": {
+        "geoip"  : {
           "dynamic": true,
-          "properties": {
-            "ip": {
-              "type": "ip"
-            },
-            "location": {
-              "type": "geo_point"
-            },
-            "latitude": {
-              "type": "float"
-            },
-            "longitude": {
-              "type": "float"
-            }
+          "properties" : {
+            "ip": { "type": "ip" },
+            "location" : { "type" : "geo_point" },
+            "latitude" : { "type" : "float" },
+            "longitude" : { "type" : "float" }
           }
         }
       }
