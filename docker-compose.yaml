@@ -13,6 +13,14 @@ services:
       - "LS_JAVA_OPTS=-Xmx2g -Xms2g"
     command: "logstash -f /usr/share/logstash/config/cloudfront.conf"
 
+  # kibana:
+  #   image: docker.elastic.co/kibana/kibana:6.8.6
+  #   container_name: kibana
+  #   environment:
+  #     - ELASTICSEARCH=elasticsearch
+  #   ports:
+  #     - 5601:5601
+
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:6.8.6
     container_name: elasticsearch
