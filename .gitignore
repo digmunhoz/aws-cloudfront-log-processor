@@ -1,3 +1,3 @@
-data/
-logs/
+data/logstash
+data/elasticsearch
 .DS_Store
