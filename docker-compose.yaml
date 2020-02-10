@@ -8,6 +8,7 @@ services:
       - ./conf/cloudfront.conf:/usr/share/logstash/config/cloudfront.conf
       - ./conf/cloudfront.template.json:/usr/share/logstash/config/cloudfront.template.json
       - ./data/logstash/files:/files
+      - ./data/logstash/logs:/logs
     environment:
       - PIPELINE_WORKERS=8
       - "LS_JAVA_OPTS=-Xmx2g -Xms2g"
