@@ -7,7 +7,10 @@ services:
     volumes:
       - ./conf/cloudfront.conf:/usr/share/logstash/config/cloudfront.conf
       - ./conf/cloudfront.template.json:/usr/share/logstash/config/cloudfront.template.json
-      - ./logs:/logs
+      - ./data/logstash/files:/files
+    environment:
+      - PIPELINE_WORKERS=8
+      - "LS_JAVA_OPTS=-Xmx2g -Xms2g"
     command: "logstash -f /usr/share/logstash/config/cloudfront.conf"
 
   elasticsearch:
