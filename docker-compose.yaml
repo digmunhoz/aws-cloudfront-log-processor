@@ -28,6 +28,7 @@ services:
     environment:
       - node.name=elasticsearch
       - cluster.name=es-docker-cluster
+      - search.max_buckets=90000
       - discovery.seed_hosts=elasticsearch
       - cluster.initial_master_nodes=elasticsearch
       - bootstrap.memory_lock=true
